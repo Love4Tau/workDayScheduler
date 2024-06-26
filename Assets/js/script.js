@@ -1,40 +1,20 @@
 // Wrap all code that interacts with the DOM in a call to jQuery to ensure that
 // the code isn't run until the browser has finished rendering all the elements
 // in the html.
-$(document).ready(function () {
+$(function () {
 
-  function saveToLocalStorage() {
-    if(localStorage.getItem("userInput") === null) {
-      localStorage.setItem("userInput", JSON.stringify([]))
-    }
+
+  function userInput() {
+
+      document.querySelectorAll(".saveBtn").forEach(button =>{
+          button.addEventListener("click", function(){
+            const hourId = this.parentElement.getAttribute("id");
+            const userText = this.parentElement.querySelector(".description").value;
+            localStorage.setItem(hourId, userText);
+          })
+      })
   }
-  document.addEventListener("click", function(e){
-    if(e.target.classList.contains('btn')) {
-        let timeId = e.target.parentElement.getAttribute("id");
-        
-        let userInput = JSON.parse(localStorage.getItem("userInput"));
-
-        userInput.push(timeId);
-
-        localStorage.setItem("userInput", JSON.stringify(userInput));
-    }
-  });
-
-    saveToLocalStorage();
-
-  
-      // })
-    
-    // })
-  // let hour = document.classList.contains(".btn")
-  
-  // function saveToLocalStorage(){
-  //   var currentData = JSON.parse(localStorage.getItem("hourId"));
-    
-  //   if(currentData === null) currentData = [];
-
-  // }
-
+                                         
 
   // TODO: Add a listener for click events on the save button. This code should
   // use the id in the containing time-block as a key to save the user input in
@@ -58,7 +38,6 @@ $(document).ready(function () {
   // define current hour
   const currentHour = dayjs().hour();
 
-  console.log(currentHour);
 
   // const hourId = document.querySelectorAll(".time-block");
 
