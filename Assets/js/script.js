@@ -26,11 +26,12 @@ userInput();
     document.querySelectorAll(".time-block").forEach((element) => {
       const scheduleHour = element.id;
       const newScheduleHour = scheduleHour.substring(5);
+      console.log(newScheduleHour);
 
       if(newScheduleHour < currentHour) {
         element.classList.remove("present", "future")
         element.classList.add("past")
-      } else if(newScheduleHour === currentHour) {
+      } else if(newScheduleHour == currentHour) {
         element.classList.remove("past", "future")
         element.classList.add("present")
       } else {
